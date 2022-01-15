@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "Sukhumvit Set";
+  src: url("../fonts/SukhumvitSet-Medium.eot");
+  src: local("☺"), url("../fonts/SukhumvitSet-Medium.woff") format("woff"),
+    url("../fonts/SukhumvitSet-Medium.ttf") format("truetype"),
+    url("../fonts/SukhumvitSet-Medium.svg") format("svg");
+  font-weight: 500;
+  font-style: normal;
+}
+
+$maxWidth: 1920;
+@mixin adaptive-value($property, $startSize, $minSize) {
+  $addSize: $startSize - $minSize;
+  #{$property}: calc(
+    #{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
+  );
+}
+
+$minwidth: 320px;
+$mw: 1690px;
+$md1: $mw + 12px;
+$md2: 993px;
+$md3: 768px;
+$md4: 480px;
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 11;
+  @include adaptive-value("padding-top", 80, 50);
+}
+
+.container-header {
+  max-width: $mw;
+  width: 100%;
+  margin: 0 auto;
+  @media (max-width: $md1) {
+    padding: 0 115px;
+  }
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: $md2) {
+    justify-content: center;
+  }
+}
+
+.header-column {
+  &__logo {
+  }
+  &:nth-child(1) {
+    transform: translate(-120%, 0px);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+    @media (max-width: $md2) {
+      transform: translate(0px, 120%);
+    }
+  }
+  &:nth-child(2) {
+    transform: translate(120%, 0px);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+  }
+  &:nth-child(1)._active {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+  &:nth-child(2)._active {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+.header-menu {
+}
+
+.header-menu-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_1 {
+    background: url("../img/icons/01.svg") left no-repeat;
+    display: inline-block;
+    @include adaptive-value("padding-left", 40, 30);
+    padding-bottom: 3px;
+    text-align: center;
+  }
+
+  &_2 {
+    background: url("../img/icons/02.svg") left no-repeat;
+    display: inline-block;
+    @include adaptive-value("padding-left", 40, 30);
+    padding-bottom: 3px;
+    text-align: center;
+  }
+
+  &__text {
+    font-family: "Sukhumvit Set";
+    font-weight: 500;
+    font-size: 18px;
+    color: #ffffff;
+    @media (max-width: $md4) {
+      font-size: 15px;
+    }
+  }
+
+  &__link {
+    font-family: "Sukhumvit Set";
+    font-weight: 500;
+    font-size: 18px;
+    text-transform: capitalize;
+    color: #ffffff;
+    margin: 0 0 0 64px;
+    @media (max-width: $md4) {
+      font-size: 15px;
+      margin: 0 0 0 44px;
+    }
+  }
+}
+
+.header-menu-list li span {
+  display: inline-block;
+  padding: 3px 0 0 0;
+}
+
+.header-menu-bottom {
+  text-align: center;
+  padding: 0 10px;
+  @media (max-width: $md2) {
+    @include adaptive-value("padding-top", 300, 100);
+    transform: translate(0px, 120%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+  }
+  @media (max-width: 360px) {
+    transform: translate(0px, 80%);
+  }
+  @media (max-height: 550px) {
+    @include adaptive-value("padding-top", 200, 50);
+    @include adaptive-value("padding-bottom", 0, 50);
+  }
+}
+.header-menu-bottom._active {
+  @media (max-width: $md2) {
+    transform: translate(0px, 0px);
+    opacity: 1;
+    transition: all 0.8s ease 1.4s;
+  }
+}

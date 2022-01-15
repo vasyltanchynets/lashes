@@ -1,0 +1,76 @@
+$minwidth: 320px;
+$mw: 1690px;
+$md1: $mw + 12px;
+$md2: 993px;
+$md3: 768px;
+$md4: 480px;
+
+.footer-container {
+  max-width: $mw;
+  width: 100%;
+  margin: 0 auto;
+  @media (max-width: $md1) {
+    padding: 0 115px;
+  }
+  @media (max-width: $md2) {
+    padding: 0 25px;
+  }
+}
+
+.footer {
+  position: relative;
+  background: url("../img/footer/01.png") center / cover no-repeat;
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding: 45px 0;
+    @media (max-width: $md2) {
+      padding: 20px 0;
+    }
+  }
+
+  &__logo {
+    z-index: 1;
+    @media (max-width: $md2) {
+      img {
+        width: 130px;
+      }
+    }
+    transform: translate(-120%, 0px);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+  }
+  &__logo._active {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+
+  &__copy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Sukhumvit Set";
+    font-size: 16px;
+    line-height: 165%;
+    text-align: center;
+    color: #ffffff;
+    z-index: 1;
+    span {
+      padding: 0 0 0 25px;
+      background: url("../img/footer/02.svg") left no-repeat;
+      @media (max-width: $md2) {
+        padding: 0 0 0 20px;
+      }
+    }
+    @media (max-width: $md2) {
+      @include adaptive-value("font-size", 16, 10);
+    }
+    transform: translate(120%, 0px);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+  }
+  &__copy._active {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
